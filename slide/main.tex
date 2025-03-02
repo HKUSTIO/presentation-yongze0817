@@ -30,7 +30,7 @@
     \insertframetitle
     \vspace*{0.2cm}
     \begin{beamercolorbox}[wd=\paperwidth,ht=0.2pt]{structure}
-    \end{beamercolorbox}
+    \end{beamercolorbox} 
 }
 
 % Customize itemize bullets
@@ -42,12 +42,20 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 
+
 % Title page information
-\title{Presentation Title}
-\subtitle{Subtitle}
-\author{Your Name}
+\title{Dynamic games in empirical industrial organization}
+\subtitle{Handbook of IO, V4, CH4}
+\author{Rongjie MA, Huanxi FENG} 
 \institute{Hong Kong University of Science and Technology}
 \date{\today}
+
+% Customize footer
+\setbeamertemplate{footline}{
+    \hspace{73em}
+    \insertframenumber
+    \vspace{1em}
+}
 
 \begin{document}
 
@@ -56,59 +64,460 @@
     \titlepage
 \end{frame}
 
+
 % Table of contents
 \begin{frame}{Outline}
-    \tableofcontents
+    \begin{itemize}
+        \item Introduction
+        \item Models
+        \item Empirical Applications
+    \end{itemize}
 \end{frame}
+
+
 
 % Section 1
-\section{Introduction}
-\begin{frame}{Introduction}
+\section{1 Introduction}
+\begin{frame}
+{1 Introduction: Role of dynamic games in empirical IO}
+A central focus in IO is understanding the role of market structure on equilibrium outcomes such as prices, product quality and variety, and market shares, and how those outcomes influence producer profits and consumer welfare.
+
+Dynamics is key to understanding the endogenous evolution of market structure.
+\begin{itemize}
+    \item Supply side dynamics: sunk costs of entry, partially irreversible investments, product repositioning costs, price adjustment costs, or learning-by-doing
+    \item Demand side dynamics: when consumers have switching costs, or when products are durable or storable
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+{1 Introduction: Role of dynamic games in empirical IO}
+
+The history of applications in the dynamic games literature in industrial organization can be delineated by two defining innovations.
     \begin{itemize}
-        \item First point
-        \item Second point
-        \item Third point
+        \item Markov Perfect Nash Equilibrium (MPNE) by Maskin and Tirole (1988a,b), and Ericson and Pakes (1995)
+        \item Conditional Choice Probability (CCP) based methods inspired by the dynamic single agent work of Hotz and Miller (1993) and Hotz et al. (1994)
     \end{itemize}
 \end{frame}
 
-% Section 2
-\section{Methods}
-\begin{frame}{Methods}
-    \begin{block}{Important Block}
-        Key information goes here
-    \end{block}
-    
+
+\section{2 Models}
+\begin{frame}
+\frametitle{2 Models}
     \begin{itemize}
-        \item Method 1
-        \item Method 2
+        \item 2.1 Basic framework
+        \item 2.2 Markov perfect Nash equilibrium
+        \item 2.3 Examples
+        \item 2.4 Extensions of the basic framework
     \end{itemize}
 \end{frame}
 
-% Section 3
-\section{Results}
-\begin{frame}{Results}
-    \begin{columns}
-        \column{0.5\textwidth}
-        \begin{itemize}
-            \item Result 1
-            \item Result 2
+\subsection{2.1 Basic framework}
+\begin{frame}
+{2.1 Basic framework}
+Ericson Pakes model (Ericson and Pakes, 1995)
+    \begin{itemize}
+        \item \(N\) firms are indexed by \(i \in \mathcal{I} = \{1, 2, \ldots, N\}\)
+        \item Time is discrete and indexed by \(t\)
+        \item Firms maximize their expected and discounted flow of profits in the market:
+            \[
+            \mathbb{E}_t \left( \sum_{s=0}^{\infty} \beta_i^s \pi_{i,t+s} \right)
+            \]
+            where \(\beta_i \in (0, 1)\) is the firm's discount factor, and \(\pi_{i,t}\) is the profit at period \(t\)
+        \item Every period, each firm i makes two strategic decisions: 
+         \begin{itemize}
+            \item a static decision, that affects current profits but not future profits; 
+            \item  an investment (dynamic) decision, that has implications on future profits
         \end{itemize}
-        
-        \column{0.5\textwidth}
-        % Placeholder for a figure
-        \centering
-        [Your figure here]
-    \end{columns}
-\end{frame}
-
-% Section 4
-\section{Conclusion}
-\begin{frame}{Conclusion}
-    \begin{itemize}
-        \item Main finding 1
-        \item Main finding 2
-        \item Future work
     \end{itemize}
 \end{frame}
 
-\end{document} 
+\begin{frame}
+{2.1 Basic framework}
+The vector of state variables \(\mathbf{x}_t\) follows a first order controlled Markov process with transition CDF \(F_x(\mathbf{x}_{t+1}|\mathbf{x}_t, \boldsymbol{a}_t)\), where \(\boldsymbol{a}_t \equiv (a_{it} : i \in \mathcal{I})\) is the vector with the investment decisions of the \(N\) firms. 
+\begin{itemize}
+    \item Vector \(\mathbf{x}_t\) includes endogenous state variables—such as capital stock, capacity, or product quality—with transition rules that depend on firms' investments. 
+    \item The vector \(\mathbf{x}_t\) may also include exogenous state variables with transition probabilities that do not depend on firms' investment decisions such as demand shifters (e.g., market population and demographics) and input prices.
+\end{itemize}
+\end{frame}
+
+
+
+\subsection{2.2 Markov perfect Nash equilibrium}
+\begin{frame}
+\frametitle{2.2 Markov perfect Nash equilibrium}
+    \begin{itemize}
+        \item 2.2.1 Definition
+        \item 2.2.2 Equilibrium existence
+        \item 2.2.3 Incomplete information
+        \item 2.2.4 Multiple equilibria
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{2.2.1 Definition}
+    \begin{block}{Key Assumption}
+        Players’ strategies at period \(t\) are functions only of payoff-relevant state variables at the same period.
+    \end{block}
+    \begin{itemize}
+        \item In this model, it means that firms' strategies are functions of the vector \( \mathbf{x}_t \) only.
+        \item Let \( \boldsymbol{\alpha} = \{\alpha_i(\mathbf{x}_t) : i \in \mathcal{I}\} \) be a set of strategy functions, one for each firm.
+        \item A MPNE is a set of strategy functions such that every firm is maximizing its value given the strategies of the other players.
+        
+    \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+{2.2.1 Definition}
+\begin{itemize}
+    \item For given strategies of the other firms, the decision problem of a firm is a single agent dynamic programming (DP) problem.
+    \item Let $V_i^\alpha(\mathbf{x}_t)$ be the value function of this DP problem. This value function is the unique solution to the Bellman equation:
+    \begin{equation}\label{}
+        V_i^\alpha(\mathbf{x}_t) = \max_{a_{it} \in \mathcal{A}_i(\mathbf{x}_t)} \left\{ \pi_i^\alpha(a_{it}, \mathbf{x}_t) + \beta_i \int V_i^\alpha(\mathbf{x}_{t+1}) \, dF_{\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it}} \right\}
+    \end{equation}
+    where 
+    \[
+    \pi_i^\alpha(a_{it}, \mathbf{x}_t) = \pi_i(a_{it}, \alpha_j(\mathbf{x}_t) : j \neq i, \mathbf{x}_t)
+    \]
+    and 
+    \[
+    F_{x,i}^\alpha(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it}) = F_x(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it}, \alpha_j(\mathbf{x}_t) : j \neq i)
+    \]
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+{2.2.1 Definition}
+    \begin{itemize}
+        \item For the description of some results, it is convenient to define the expression in brackets \(\{\}\) in Eq. (1) as the conditional choice value function \(v_i^\alpha(a_{it}, \mathbf{x}_t)\). That is,
+        \begin{equation}\label{}
+            v_i^\alpha(a_{it}, \mathbf{x}_t) \equiv \pi_i^\alpha(a_{it}, \mathbf{x}_t) + \beta_i \int V_i^\alpha(\mathbf{x}_{t+1}) \, dF_{x,i}^\alpha(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it})
+        \end{equation}
+        \item The best response decision rule for firm \(i\) is \(\arg\max_{a_{it} \in \mathcal{A}_i(\mathbf{x}_t)} v_i^\alpha(a_{it}, \mathbf{x}_t)\).
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{2.2.2 Equilibrium existence}
+\begin{itemize}
+    \item Doraszelski and Satterthwaite (2010) show that existence of a MPNE in pure strategies is not guaranteed in this model under the conditions in Ericson and Pakes (1995).
+    \begin{itemize}
+        \item When firms make discrete choices such as market entry and exit decisions, the existence of an equilibrium cannot be ensured without allowing firms to randomize over these discrete actions.
+    \end{itemize}
+    \item A possible approach to guarantee equilibrium existence is to allow for mixed strategies.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+{2.2.2 Equilibrium existence}
+\begin{itemize}
+     \item However, computing a MPNE in mixed strategies poses important computational challenges.
+    \begin{itemize}
+        \item Multi-firm dynamic optimal control problem in which each firm needs to consider the distribution of competitors' strategies 
+        \item The high-dimensional state space, due to the state of the firm s may be high-dimensional, such as market share, technology level, etc., making the equilibrium computation complex.
+        \item The computational burden of randomized strategies requires solving for the optimal mixed strategy probability of each firm in each state 
+    \end{itemize}
+    \item Doraszelski and Satterthwaite (2010) propose incorporating private information state variables.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{2.2.3 Incomplete information}
+    \begin{itemize}
+        \item Common knowledge state variables $\mathbf{x}_t$
+        \item A private information shock (or vector of shocks) $\varepsilon_{it}$ is independently distributed over time and across firms with a distribution function $F_{\varepsilon}$.
+        \item Profit function $\pi_i(a_{it}, \mathbf{x}_t)$
+        \item MPBNE in this model is an \(N\)-tuple of strategy functions \(\boldsymbol{\alpha} = \{\alpha_i(\mathbf{x}_t, \varepsilon_{it}) : i \in \mathcal{I}\}\) such that a firm's strategy maximizes its value taking as given other firms' strategies.
+        \item For any strategy function $\alpha_i(\mathbf{x}_t, \varepsilon_{it})$ we can define its corresponding CCP function, $P_i(a_{it}|\mathbf{x}_t)$, as the probability distribution induced by this strategy and the distribution of private information. That is,
+        \begin{equation}\label{}
+            P_i(a_{it}|\mathbf{x}_t) \equiv \int 1\{\alpha_i(\mathbf{x}_t, \varepsilon_{it}) = a_{it}\} \, dF_{\varepsilon}(\varepsilon_{it})
+        \end{equation}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{2.2.3 Incomplete information}
+We can represent firms' best responses and equilibrium conditions as a fixed point mapping in the space of these CCPs.
+    \begin{itemize}
+        \item  Let \(\mathbf{P} \equiv \{P_i(a_{it}|\mathbf{x}_t)\}\) be a vector of CCPs for every firm \(i \in \mathcal{I}\), every action \(a_{it} \in \mathcal{A}\), and every state \(\mathbf{x}_t \in \mathcal{X}\). Define \(\pi_i^\mathbf{P}(a_{it}, \mathbf{x}_t, \varepsilon_{it})\) as firm \(i\)'s expected profit given that the other firms behave according to their respective CCPs in \(\mathbf{P}\). That is,
+        \begin{equation}\label{}
+            \pi_i^\mathbf{P}(a_{it}, \mathbf{x}_t, \varepsilon_{it}) \equiv \sum_{\mathbf{a}_{-it} \in \mathcal{A}_{-i}(\mathbf{x}_t)} \left[ \prod_{j \neq i} P_j(a_{jt}|\mathbf{x}_t) \right] \pi_i(a_{it}, \mathbf{a}_{-it}, \mathbf{x}_t, \varepsilon_{it})
+        \end{equation}
+
+        \item Similarly, $F_i^\text{P}(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it})$ is the transition probability of the state variables from firm \(i\)’s perspective and given that the other firms behave according their CCPs in $\mathbf{P}$:
+        \begin{equation}
+            F_i^\mathbf{P}(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it}) \equiv \sum_{\mathbf{a}_{-it} \in \mathcal{A}_{-i}(\mathbf{x}_t)} \left[ \prod_{j \neq i} P_j(a_{jt}|\mathbf{x}_t) \right] F_x(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it}, \mathbf{a}_{-it})
+        \end{equation}
+
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+{2.2.3 Incomplete information}
+    \begin{itemize}
+        \item Then, for every firm \(i\), action $a_{it}$, and state $\mathbf{x}_t$, we have that CCPs satisfy the following equilibrium condition:
+        \begin{equation}\label{}
+            \begin{split}
+            &P_i(a_{it}|\mathbf{x}_t) = \\
+            &\int 1 \left[ a_{it} = \arg \max_{a_i \in \mathcal{A}_i(\mathbf{x}_t)} \left\{ \pi_i^\mathbf{P}(a_i, \mathbf{x}_t, \varepsilon_{it}) + \beta_i \int V_i^\mathbf{P}(\mathbf{x}_{t+1}) \, dF_{x,i}^\mathbf{P}(\mathbf{x}_{t+1}|\mathbf{x}_t, a_i) \right\} \right] dF_\varepsilon(\varepsilon_{it})
+            \end{split}
+        \end{equation}
+        where $V_i^\mathbf{P}$ is the (integrated) value function in firm \(i\)’s DP problem given that the other firms behave according their CCPs in $\mathbf{P}$. 
+        \item This value function uniquely solves the following integrated Bellman equation:
+        \begin{equation}\label{}
+            V_i^\mathbf{P}(\mathbf{x}_t) = \int \max_{a_i \in \mathcal{A}_i(\mathbf{x}_t)} \left\{ \pi_i^\text{P}(a_i, \mathbf{x}_t, \varepsilon_{it}) + \beta_i \int V_i^\mathbf{P}(\mathbf{x}_{t+1}) \, dF_{x,i}^\mathbf{P}(\mathbf{x}_{t+1}|\mathbf{x}_t, a_i) \right\} dF_\varepsilon(\varepsilon_{it})
+        \end{equation}
+
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{2.2.4 Multiple equilibria}
+In dynamic games, each economic agent (such as a firm) will \textbf{best respond} to the strategies of other agents. The possibility of multiple equilibria arises from:
+    \begin{itemize}
+        \item The strategies of competitors may affect one's own optimal strategy (i.e., there is \textbf{strategic complementarity}).
+        \item Since different combinations of strategies may all satisfy the definition of a Nash equilibrium, multiple equilibria may coexist.
+        \item Specifically, in issues such as firm entry and exit, investment decisions, etc., there may exist:
+        \begin{itemize}
+            \item \textbf{Low Investment Equilibrium} (no firms invest because they expect other firms not to invest).
+            \item \textbf{High Investment Equilibrium} (all firms invest because they expect other firms to invest as well).
+        \end{itemize}
+    \end{itemize}
+This strategic uncertainty leads to models often having multiple equilibria.
+\end{frame}
+
+
+\begin{frame}
+{2.2.4 Multiple equilibria}
+There are conditions on the primitives of the model that guarantee equilibrium uniqueness, but they are typically strong restrictions.
+\begin{itemize}
+    \item For instance, a set of sufficient conditions for uniqueness is:
+    \begin{itemize}
+        \item (i) the game has a finite time horizon;
+        \item (ii) firms are (ex-ante) homogeneous in their profit functions and transition probabilities;
+        \item (iii) every period, only one firm can make an investment decision.
+    \end{itemize}
+    
+    \item However, multiple equilibria are possible when we relax only one of the conditions:
+    \begin{itemize}
+        \item (i) -> different long-run equilibrium paths
+        \item (ii) -> different types of firms may adopt different strategies
+        \item (iii) -> decisions influence each other
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+
+\subsection{2.3 Examples}
+\begin{frame}
+\frametitle{2.3 Examples}
+The framework presented above has been used in a wide range of empirical applications in IO.
+    \begin{itemize}
+        \item Market entry and exit
+        \\Potential entrants pay an entry cost if they decide to enter. Incumbents do not pay an entry cost if they decide to be active, but pay exit costs (or receive a scrap value) if they choose to be inactive.
+        \item Price competition with durable products
+        \\A price reduction implies an increase in today’s sales but also a reduction in future demand, as consumers buying the product today exit the market and will not be part of future demand.
+        \item Exploitation of natural resources
+        \\A firm’s amount of output implies a dynamic externality on other firms because of the depletion of the common stock. This is known popularly as the tragedy of the commons.
+        \end{itemize}
+\end{frame}
+
+
+\subsection{2.4 Extensions of the basic framework}
+\begin{frame}
+\frametitle{2.4 Extensions of the basic framework}
+    \begin{itemize}
+        \item 2.4.1 Continuous time
+        \item 2.4.2 Oblivious equilibrium
+        \item 2.4.3 Large state spaces
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{2.4.1 Continuous time}
+Doraszelski and Judd (2012) introduced continuous time methods：
+\begin{itemize}
+    \item At any moment, the probability that only one firm's state changes is 1. Therefore, the number of possible future states is reduced, thus reducing computational complexity.
+
+    \begin{itemize}
+        \item In \textbf{Discrete Time} dynamic games:
+        \begin{itemize}
+            \item If there are \( N \) firms in the market, and each firm has \( A \) possible strategies (such as invest, not invest), then:
+            \[
+            \text{Total number of possible states} = A^{N}
+            \]
+        \end{itemize}
+        \item In \textbf{Continuous Time} dynamic games:
+        \begin{itemize}
+            \item Since only one firm's state changes at each moment, therefore:
+            \[
+            \text{Total number of states to consider} = (A - 1)N
+            \]
+            \item This number is much smaller than \( A^{N} \), and grows more slowly as \( A \) and \( N \) increase.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+{2.4.1 Continuous time}
+Strategic Response Lag:
+\begin{itemize}
+    \item In the continuous time model, the firm's strategy will not immediately impact the market state.
+    \item Firms in the real market may immediately respond to the strategies of their competitors, but the continuous time model assumes that state variables need time to change, leading to a lag in market adjustment.
+    \item For example:
+    \begin{itemize}
+        \item In the real world, if a firm reduces its price, competitors may immediately follow suit with a price reduction.
+        \item However, in the continuous time dynamic game model, competitors must wait until the state variables adjust before they can change their prices, which may affect the realism of the model.
+    \end{itemize}
+    \item Solution: Introducing Instantaneous State Changes
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{2.4.2 Oblivious equilibrium}
+Hopenhayn (1992) Model:
+\begin{itemize}
+    \item Firms are atomistic, i.e., each firm's decisions do not affect the overall state of the market 
+    \item This assumption makes the calculation simpler because firms can treat the market state as given (exogenous) and do not need to consider the impact of competitors' decisions on themselves.
+
+    \item Assuming further that there are no aggregate shocks, i.e., that the state of the market is deterministic, then firms have perfect foresight in their decision making.
+\end{itemize}
+
+ 
+\end{frame}
+
+\begin{frame}
+{2.4.2 Oblivious equilibrium}
+Ericson and Pakes (1995) model:
+\begin{itemize}
+
+    \item A firm's decisions affect competitors' profits, i.e. there are strategic considerations. 
+    \item In this case, firms not only have to consider their own state $\mathbf{x}_{it}$, but also the state of the whole industry $\mathbf{x}_t$, such as competitors' market share, technology level, and so on.
+    \item Due to the need to track the entire market state, the state space becomes extremely large and the computational complexity increases significantly.
+    \item For example, in the Pakes and McGuire (1994) model, if there are 10 firms, each of which can choose 20 different quality levels, then the number of states is as high as 10 trillion, and it is difficult just to store the value function, not to mention solving it.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+{2.4.2 Oblivious equilibrium}
+Weintraub et al. (2008) propose an approach called "Oblivious Equilibrium ”:
+\begin{itemize}
+    \item Firms focus only on their own state $\mathbf{x}_{it}$ to make decisions without directly tracking the state of their competitors $\mathbf{x}_t$
+    \item Firms assume that the average state of the market (e.g., the average quality level of the industry) is a long-run equilibrium value and not dynamically changing.
+    \item Applicable scenarios:
+    \begin{itemize}
+        \item Markets with a large number of firms in which no firm is particularly dominant (e.g., perfectly competitive markets)
+        \item Industries where strategic interactions between firms are weak
+    \end{itemize}
+    
+    \item Problems:
+    \begin{itemize}
+        \item Industry leaders (dominant firms): competitors cannot ignore the status of these leading firms (e.g. Apple and Samsung)
+    \item Macroeconomic fluctuations (aggregate shocks): such as industries with high demand variability, the assumption of forgotten equilibrium may fail.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+{2.4.2 Oblivious equilibrium}
+Ifrach and Weintraub (2017) proposed MME (Moment-Based Markov Equilibrium):
+\begin{itemize}
+    \item Firms' decisions to depend not only on their own state $\mathbf{x}_{it}$, but also on key statistical characteristics (moments) of the market, denoted by $\mathbf{x}_{t}$
+    \item MME is equivalent to adding some market-level information on the basis of the “forgotten equilibrium”, which makes the model still computationally simple, but can better reflect the actual situation of market competition.
+
+    \item Example: Cournot Competition Model (Capacity Competition), the firm's profit can be approximated as:
+    \[
+    \pi(x_{it}, s_t) \approx f(x_{it}, s_t)
+    \]
+    \item Problem:
+    \begin{itemize}
+        \item MME is still an approximation method and is not fully guaranteed to agree with MPNE.
+        \item Which statistical features (moments) to choose as a state variable is a critical issue that may lead to large model errors if not chosen properly.
+    \end{itemize}
+    
+    
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{2.4.3 Large state spaces}
+\begin{itemize}
+    \item An alternative to using MME to reduce the state space is to approximate the value function with a basis approximation such as 
+    \[ 
+    V(\mathbf{x}_t) \approx \sum_{k}^{K} \theta_k \phi^k(\mathbf{x}_t) 
+    \] 
+    where each \( \phi^k() \) is a basis function and \( \theta_k \) is a coefficient. 
+    
+    \item To make this more concrete, if two firms were competing in quality and \( \mathbf{x}_t = (x_{1t}, x_{2t}) \) where \( x_{it} \) is firm \( i \)'s quality at period \( t \), then basis functions could be a second order polynomial such that value function is approximated
+    \[
+    V(x_{1t}, x_{2t}) \approx \theta_1 + \theta_2 x_{1t} + \theta_3 x_{2t} + \theta_4 x_{1t}^2 + \theta_5 x_{2t}^2 + \theta_6 x_{1t} x_{2t} 
+    \]
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+{2.4.3 Large state spaces}
+Computational Advantage:
+
+If we directly solve for the value function \( V(x_t) \), we need to compute a fixed point (fixed point) for each possible state \( x_t \), that is:
+\[
+V(x_t) = \max_{a_t} \mathbb{E}[r(x_t, a_t) + \beta V(x_{t+1})]
+\]
+This requires traversing the entire state space, which is very time-consuming.
+
+However, if we use basis function approximation:
+\begin{itemize}
+    \item We only need to solve for the fixed point of the coefficient vector \( \boldsymbol{\theta} \), and not compute the fixed point for each \( x_t \).
+    \item This can greatly reduce computational complexity, especially when the state space is high-dimensional.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+{2.4.3 Large state spaces}
+
+Dimensionality Issues:
+
+When the number of firms in the market increases, the state space dimension increases significantly, e.g., if there are 10 firms, each with a 1-dimensional state variable, then the state space is 10-dimensional.
+\begin{itemize}
+    \item Choosing Features of the States
+    
+    Instead of using all state variables directly, Powell (2007) suggests extracting key features to define the basis functions.
+    \item Using Machine Learning Methods to Select Basis Functions
+    \begin{itemize}
+        \item LASSO regression (L1 regularization): Kalouptsidi (2018) uses LASSO to automatically select the most important basis functions and reduce computational complexity.
+        \item Deep Learning (DL): Automatically learns appropriate basis functions through neural networks without having to manually assume a specific polynomial form.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Outline}
+    \begin{itemize}
+        \item Introduction
+        \item Models
+        \item Empirical Applications
+    \end{itemize}
+\end{frame}
+
+\end{document}
