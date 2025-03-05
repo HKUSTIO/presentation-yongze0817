@@ -41,6 +41,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{hyperref}
+\usepackage{microtype}
 
 
 % Title page information
@@ -124,7 +125,7 @@ Ericson Pakes model (Ericson and Pakes, 1995)
             \mathbb{E}_t \left( \sum_{s=0}^{\infty} \beta_i^s \pi_{i,t+s} \right)
             \]
             where \(\beta_i \in (0, 1)\) is the firm's discount factor, and \(\pi_{i,t}\) is the profit at period \(t\)
-        \item Every period, each firm i makes two strategic decisions: 
+        \item Every period, each firm \(i\) makes two strategic decisions: 
          \begin{itemize}
             \item a static decision, that affects current profits but not future profits; 
             \item  an investment (dynamic) decision, that has implications on future profits
@@ -134,10 +135,13 @@ Ericson Pakes model (Ericson and Pakes, 1995)
 
 \begin{frame}
 {2.1 Basic framework}
-The vector of state variables \(\mathbf{x}_t\) follows a first order controlled Markov process with transition CDF \(F_x(\mathbf{x}_{t+1}|\mathbf{x}_t, \boldsymbol{a}_t)\), where \(\boldsymbol{a}_t \equiv (a_{it} : i \in \mathcal{I})\) is the vector with the investment decisions of the \(N\) firms. 
 \begin{itemize}
-    \item Vector \(\mathbf{x}_t\) includes endogenous state variables—such as capital stock, capacity, or product quality—with transition rules that depend on firms' investments. 
-    \item The vector \(\mathbf{x}_t\) may also include exogenous state variables with transition probabilities that do not depend on firms' investment decisions such as demand shifters (e.g., market population and demographics) and input prices.
+    \item The vector of state variables \(\mathbf{x}_t\) follows a first order controlled Markov process with transition CDF \(F_x(\mathbf{x}_{t+1}|\mathbf{x}_t, \boldsymbol{a}_t)\), where \(\boldsymbol{a}_t \equiv (a_{it} : i \in \mathcal{I})\) is the vector with the investment decisions of the \(N\) firms. 
+    \begin{itemize}
+        \item Vector \(\mathbf{x}_t\) includes endogenous state variables—such as capital stock, capacity, or product quality—with transition rules that depend on firms' investments. 
+        \item The vector \(\mathbf{x}_t\) may also include exogenous state variables with transition probabilities that do not depend on firms' investment decisions such as demand shifters (e.g., market population and demographics) and input prices.
+    \end{itemize}
+    \item A firm’s investment affects its own profit—other than the investment cost—and other firms’ profits one period after the investment decision is taken.
 \end{itemize}
 \end{frame}
 
@@ -156,7 +160,7 @@ The vector of state variables \(\mathbf{x}_t\) follows a first order controlled 
 
 
 \begin{frame}{2.2.1 Definition}
-    \begin{block}{Key Assumption}
+    \begin{block}{Key Assumption in MPNE}
         Players’ strategies at period \(t\) are functions only of payoff-relevant state variables at the same period.
     \end{block}
     \begin{itemize}
@@ -174,7 +178,7 @@ The vector of state variables \(\mathbf{x}_t\) follows a first order controlled 
 \begin{itemize}
     \item For given strategies of the other firms, the decision problem of a firm is a single agent dynamic programming (DP) problem.
     \item Let $V_i^\alpha(\mathbf{x}_t)$ be the value function of this DP problem. This value function is the unique solution to the Bellman equation:
-    \begin{equation}\label{}
+    \begin{equation}\label{1}
         V_i^\alpha(\mathbf{x}_t) = \max_{a_{it} \in \mathcal{A}_i(\mathbf{x}_t)} \left\{ \pi_i^\alpha(a_{it}, \mathbf{x}_t) + \beta_i \int V_i^\alpha(\mathbf{x}_{t+1}) \, dF_{\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it}} \right\}
     \end{equation}
     where 
@@ -193,7 +197,7 @@ The vector of state variables \(\mathbf{x}_t\) follows a first order controlled 
 {2.2.1 Definition}
     \begin{itemize}
         \item For the description of some results, it is convenient to define the expression in brackets \(\{\}\) in Eq. (1) as the conditional choice value function \(v_i^\alpha(a_{it}, \mathbf{x}_t)\). That is,
-        \begin{equation}\label{}
+        \begin{equation}\label{2}
             v_i^\alpha(a_{it}, \mathbf{x}_t) \equiv \pi_i^\alpha(a_{it}, \mathbf{x}_t) + \beta_i \int V_i^\alpha(\mathbf{x}_{t+1}) \, dF_{x,i}^\alpha(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it})
         \end{equation}
         \item The best response decision rule for firm \(i\) is \(\arg\max_{a_{it} \in \mathcal{A}_i(\mathbf{x}_t)} v_i^\alpha(a_{it}, \mathbf{x}_t)\).
@@ -234,7 +238,7 @@ The vector of state variables \(\mathbf{x}_t\) follows a first order controlled 
         \item Profit function $\pi_i(a_{it}, \mathbf{x}_t)$
         \item MPBNE in this model is an \(N\)-tuple of strategy functions \(\boldsymbol{\alpha} = \{\alpha_i(\mathbf{x}_t, \varepsilon_{it}) : i \in \mathcal{I}\}\) such that a firm's strategy maximizes its value taking as given other firms' strategies.
         \item For any strategy function $\alpha_i(\mathbf{x}_t, \varepsilon_{it})$ we can define its corresponding CCP function, $P_i(a_{it}|\mathbf{x}_t)$, as the probability distribution induced by this strategy and the distribution of private information. That is,
-        \begin{equation}\label{}
+        \begin{equation}\label{3}
             P_i(a_{it}|\mathbf{x}_t) \equiv \int 1\{\alpha_i(\mathbf{x}_t, \varepsilon_{it}) = a_{it}\} \, dF_{\varepsilon}(\varepsilon_{it})
         \end{equation}
     \end{itemize}
@@ -245,12 +249,12 @@ The vector of state variables \(\mathbf{x}_t\) follows a first order controlled 
 We can represent firms' best responses and equilibrium conditions as a fixed point mapping in the space of these CCPs.
     \begin{itemize}
         \item  Let \(\mathbf{P} \equiv \{P_i(a_{it}|\mathbf{x}_t)\}\) be a vector of CCPs for every firm \(i \in \mathcal{I}\), every action \(a_{it} \in \mathcal{A}\), and every state \(\mathbf{x}_t \in \mathcal{X}\). Define \(\pi_i^\mathbf{P}(a_{it}, \mathbf{x}_t, \varepsilon_{it})\) as firm \(i\)'s expected profit given that the other firms behave according to their respective CCPs in \(\mathbf{P}\). That is,
-        \begin{equation}\label{}
+        \begin{equation}\label{4}
             \pi_i^\mathbf{P}(a_{it}, \mathbf{x}_t, \varepsilon_{it}) \equiv \sum_{\mathbf{a}_{-it} \in \mathcal{A}_{-i}(\mathbf{x}_t)} \left[ \prod_{j \neq i} P_j(a_{jt}|\mathbf{x}_t) \right] \pi_i(a_{it}, \mathbf{a}_{-it}, \mathbf{x}_t, \varepsilon_{it})
         \end{equation}
 
         \item Similarly, $F_i^\text{P}(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it})$ is the transition probability of the state variables from firm \(i\)’s perspective and given that the other firms behave according their CCPs in $\mathbf{P}$:
-        \begin{equation}
+        \begin{equation}\label{5}
             F_i^\mathbf{P}(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it}) \equiv \sum_{\mathbf{a}_{-it} \in \mathcal{A}_{-i}(\mathbf{x}_t)} \left[ \prod_{j \neq i} P_j(a_{jt}|\mathbf{x}_t) \right] F_x(\mathbf{x}_{t+1}|\mathbf{x}_t, a_{it}, \mathbf{a}_{-it})
         \end{equation}
 
@@ -262,15 +266,14 @@ We can represent firms' best responses and equilibrium conditions as a fixed poi
 {2.2.3 Incomplete information}
     \begin{itemize}
         \item Then, for every firm \(i\), action $a_{it}$, and state $\mathbf{x}_t$, we have that CCPs satisfy the following equilibrium condition:
-        \begin{equation}\label{}
+        \begin{equation}\label{6}
             \begin{split}
             &P_i(a_{it}|\mathbf{x}_t) = \\
             &\int 1 \left[ a_{it} = \arg \max_{a_i \in \mathcal{A}_i(\mathbf{x}_t)} \left\{ \pi_i^\mathbf{P}(a_i, \mathbf{x}_t, \varepsilon_{it}) + \beta_i \int V_i^\mathbf{P}(\mathbf{x}_{t+1}) \, dF_{x,i}^\mathbf{P}(\mathbf{x}_{t+1}|\mathbf{x}_t, a_i) \right\} \right] dF_\varepsilon(\varepsilon_{it})
             \end{split}
         \end{equation}
-        where $V_i^\mathbf{P}$ is the (integrated) value function in firm \(i\)’s DP problem given that the other firms behave according their CCPs in $\mathbf{P}$. 
-        \item This value function uniquely solves the following integrated Bellman equation:
-        \begin{equation}\label{}
+        where $V_i^\mathbf{P}$ is the (integrated) value function in firm \(i\)’s DP problem given that the other firms behave according their CCPs in $\mathbf{P}$. This value function uniquely solves the following integrated Bellman equation:
+        \begin{equation}\label{7}
             V_i^\mathbf{P}(\mathbf{x}_t) = \int \max_{a_i \in \mathcal{A}_i(\mathbf{x}_t)} \left\{ \pi_i^\text{P}(a_i, \mathbf{x}_t, \varepsilon_{it}) + \beta_i \int V_i^\mathbf{P}(\mathbf{x}_{t+1}) \, dF_{x,i}^\mathbf{P}(\mathbf{x}_{t+1}|\mathbf{x}_t, a_i) \right\} dF_\varepsilon(\varepsilon_{it})
         \end{equation}
 
@@ -306,9 +309,9 @@ There are conditions on the primitives of the model that guarantee equilibrium u
     
     \item However, multiple equilibria are possible when we relax only one of the conditions:
     \begin{itemize}
-        \item (i) -> different long-run equilibrium paths
-        \item (ii) -> different types of firms may adopt different strategies
-        \item (iii) -> decisions influence each other
+        \item (i) $->$ different long-run equilibrium paths
+        \item (ii) $->$ different types of firms may adopt different strategies
+        \item (iii) $->$ decisions influence each other
     \end{itemize}
 \end{itemize}
 
@@ -348,24 +351,16 @@ Doraszelski and Judd (2012) introduced continuous time methods：
 \begin{itemize}
     \item At any moment, the probability that only one firm's state changes is 1. Therefore, the number of possible future states is reduced, thus reducing computational complexity.
 
-    \begin{itemize}
-        \item In \textbf{Discrete Time} dynamic games:
-        \begin{itemize}
-            \item If there are \( N \) firms in the market, and each firm has \( A \) possible strategies (such as invest, not invest), then:
-            \[
-            \text{Total number of possible states} = A^{N}
-            \]
-        \end{itemize}
-        \item In \textbf{Continuous Time} dynamic games:
-        \begin{itemize}
-            \item Since only one firm's state changes at each moment, therefore:
-            \[
-            \text{Total number of states to consider} = (A - 1)N
-            \]
-            \item This number is much smaller than \( A^{N} \), and grows more slowly as \( A \) and \( N \) increase.
-        \end{itemize}
-    \end{itemize}
+\begin{itemize}
+    \item \textbf{Discrete Time}:
+
+    If there are \( N \) firms in the market, and each firm has \( A \) possible strategies (such as invest, not invest), one has to integrate over  $A^N$ states.
+    \item \textbf{Continuous Time}:
+
+    Since only one firm's state changes at each moment, one has to sum over $(A - 1)N$ terms. This number is much smaller than \( A^N \), and grows more slowly as \( A \) and \( N \) increase.
 \end{itemize}
+\end{itemize}
+
 \end{frame}
 
 
@@ -392,7 +387,7 @@ Hopenhayn (1992) Model:
     \item Firms are atomistic, i.e., each firm's decisions do not affect the overall state of the market 
     \item This assumption makes the calculation simpler because firms can treat the market state as given (exogenous) and do not need to consider the impact of competitors' decisions on themselves.
 
-    \item Assuming further that there are no aggregate shocks, i.e., that the state of the market is deterministic, then firms have perfect foresight in their decision making.
+    \item Assume further that there are no aggregate shocks, i.e., that the state of the market is deterministic, then firms have perfect foresight in their decision making.
 \end{itemize}
 
  
@@ -426,8 +421,8 @@ Weintraub et al. (2008) propose an approach called "Oblivious Equilibrium ”:
     
     \item Problems:
     \begin{itemize}
-        \item Industry leaders (dominant firms): competitors cannot ignore the status of these leading firms (e.g. Apple and Samsung)
-    \item Macroeconomic fluctuations (aggregate shocks): such as industries with high demand variability, the assumption of forgotten equilibrium may fail.
+        \item Industry leaders: competitors cannot ignore the status of these leading firms (e.g. Apple and Samsung)
+    \item Macro fluctuations: such as industries with high demand variability, the assumption of oblivious equilibrium may fail.
     \end{itemize}
 \end{itemize}
 \end{frame}
@@ -439,8 +434,8 @@ Weintraub et al. (2008) propose an approach called "Oblivious Equilibrium ”:
 {2.4.2 Oblivious equilibrium}
 Ifrach and Weintraub (2017) proposed MME (Moment-Based Markov Equilibrium):
 \begin{itemize}
-    \item Firms' decisions to depend not only on their own state $\mathbf{x}_{it}$, but also on key statistical characteristics (moments) of the market, denoted by $\mathbf{x}_{t}$
-    \item MME is equivalent to adding some market-level information on the basis of the “forgotten equilibrium”, which makes the model still computationally simple, but can better reflect the actual situation of market competition.
+    \item Firms' decisions depend not only on their own state $\mathbf{x}_{it}$, but also on key statistical characteristics (moments) of the market, denoted by ${s}_{t}$
+    \item MME is equivalent to adding some market-level information on the basis of the “oblivious equilibrium”, which makes the model still computationally simple, but can better reflect the actual situation of market competition.
 
     \item Example: Cournot Competition Model (Capacity Competition), the firm's profit can be approximated as:
     \[
@@ -467,7 +462,7 @@ Ifrach and Weintraub (2017) proposed MME (Moment-Based Markov Equilibrium):
     \] 
     where each \( \phi^k() \) is a basis function and \( \theta_k \) is a coefficient. 
     
-    \item To make this more concrete, if two firms were competing in quality and \( \mathbf{x}_t = (x_{1t}, x_{2t}) \) where \( x_{it} \) is firm \( i \)'s quality at period \( t \), then basis functions could be a second order polynomial such that value function is approximated
+    \item To make this more concrete, if two firms were competing in quality and \( \mathbf{x}_t = (x_{1t}, x_{2t}) \) where \( x_{it} \) is firm \( i \)'s quality at period \( t \), then basis functions could be a second order polynomial such that value function is approximated as:
     \[
     V(x_{1t}, x_{2t}) \approx \theta_1 + \theta_2 x_{1t} + \theta_3 x_{2t} + \theta_4 x_{1t}^2 + \theta_5 x_{2t}^2 + \theta_6 x_{1t} x_{2t} 
     \]
@@ -480,7 +475,7 @@ Ifrach and Weintraub (2017) proposed MME (Moment-Based Markov Equilibrium):
 {2.4.3 Large state spaces}
 Computational Advantage:
 
-If we directly solve for the value function \( V(x_t) \), we need to compute a fixed point (fixed point) for each possible state \( x_t \), that is:
+If we directly solve for the value function \( V(x_t) \), we need to compute a fixed point for each possible state \( x_t \), that is:
 \[
 V(x_t) = \max_{a_t} \mathbb{E}[r(x_t, a_t) + \beta V(x_{t+1})]
 \]
